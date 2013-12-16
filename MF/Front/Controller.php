@@ -206,13 +206,13 @@ class MF_Front_Controller {
 	public function dispatchPATH ($application = 'Site') {
 		// Get path called after script name
 		$path = substr($_SERVER['PHP_SELF'], strlen($_SERVER['SCRIPT_NAME']) + 1);
-		
+
 		// Empty ? Direct call to /module/action
 		if (empty($path)) {
 			$uri 	= $this->getURI();
 			$p 		= parse_url($uri);
-			
-			$dir 	= dirname($_SERVER['SCRIPT_NAME']);
+
+			$dir 	= str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 			if (substr($dir, -1) != '/') {
 				$dir .= '/';
 			}
