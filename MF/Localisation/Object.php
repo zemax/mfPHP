@@ -60,7 +60,7 @@ class MF_Localisation_Object {
 			return ($this->locales[$this->getPortail()]);
 		}
 		else {
-			return;
+			return false;
 		}
 	}
 }
