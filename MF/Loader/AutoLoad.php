@@ -48,13 +48,17 @@ class MF_Loader_AutoLoad {
 			}
 		}
 		
-		if (isset($args['__autoload']) && ($args['__autoload'])) {
+		if ( (isset($args['__autoload']) && ($args['__autoload'])) || (version_compare(PHP_VERSION, '5.1.2', '<')) ) {
 			function __autoload ($class) {
 				MF_Loader_AutoLoad::autoload($class);
 			}
 		}
 		else {
-			spl_autoload_register(array('MF_Loader_AutoLoad', 'autoload'), true, true);
+			if (version_compare(PHP_VERSION, '5.3.0', '>=')) {
+				spl_autoload_register(array('MF_Loader_AutoLoad', 'autoload'), true, true);
+			} else {
+				spl_autoload_register(array('MF_Loader_AutoLoad', 'autoload'));
+			}
 		}
 	}
 }
