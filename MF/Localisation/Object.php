@@ -1,12 +1,14 @@
 <?php
-class MF_Localisation_Object {
+namespace MF\Localisation;
+
+class Object {
 	var $portail;
 	var $locales;
 	
 	/**
 	 * Constructor
 	 * 
-	 * @return MCM_Localisation
+	 * @return Object
 	 */
 	protected function __construct () {
 		$this->locales = array();
@@ -54,6 +56,9 @@ class MF_Localisation_Object {
 
 	/**
 	 * Retourne la localisation adaptée
+	 *
+	 * @param $portail
+	 * @return LocaleObject
 	 */
 	private function getLocale ($portail) {
 		if (!empty($this->locales[$this->getPortail()])) {

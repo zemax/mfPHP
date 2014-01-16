@@ -1,27 +1,30 @@
 <?php
 /**
- * @version 2.1.5 2009-01-15
- * - static keyword
- * - updated isJetableEmail
- * 
- * @version 2.1.4 2008-05-14
- * - added isValidEmail
- * - added isJetableEmail
- * 
- * @version 2.1.3 2008-01-31
- * - added sizedNumber
- * 
- * @version 2.1.2 2007-12-13
- * - replaced self:: by StringManager:: for PHP4 compatibility
- * 
- * @version	2.1.1 2007-07-18
- * - added autodetect mb_string
- * - added optionnal delimiters array in toCapitalize
- * - replaced StringManager:: by self::
- * 
- * @version	2.1.0 2007-06-13
- */
-class MF_String {
+* @version 2.1.5 2009-01-15
+* - static keyword
+* - updated isJetableEmail
+*
+* @version 2.1.4 2008-05-14
+* - added isValidEmail
+* - added isJetableEmail
+*
+* @version 2.1.3 2008-01-31
+* - added sizedNumber
+*
+* @version 2.1.2 2007-12-13
+* - replaced self:: by StringManager:: for PHP4 compatibility
+*
+* @version	2.1.1 2007-07-18
+* - added autodetect mb_string
+* - added optionnal delimiters array in toCapitalize
+* - replaced StringManager:: by self::
+*
+* @version	2.1.0 2007-06-13
+*/
+
+namespace MF;
+
+class String {
 	/**
 	 * Return lowercase string
 	 *
@@ -107,7 +110,7 @@ class MF_String {
 	 * 
 	 * @return String
 	 */
-	public static function toISO($v) {
+	public static function toLatin1($v) {
 		$v = str_replace('€', chr(128), $v);
 		
 		return (utf8_decode($v));

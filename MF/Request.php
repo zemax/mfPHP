@@ -1,17 +1,19 @@
 <?php
 /**
- * VarTools
- * Tool for handling variables from $_GET or $_POST
- * 
- * @version 1.0.1 2008-09-03
- * - remove explicit & reference
- *
- * @version	1.0.0 2007-06-13
- * 
- * @author	Maxime Cousinou
- */
+* Request
+* Tool for handling variables from $_GET or $_POST
+*
+* @version 1.0.1 2008-09-03
+* - remove explicit & reference
+*
+* @version	1.0.0 2007-06-13
+*
+* @author	Maxime Cousinou
+*/
 
-class MF_Request {
+namespace MF;
+
+class Request {
 	/**
 	 * Return a copy of variables Arrays ($_GET ou $_POST) without the quotes (even with magic_quotes on)
 	 *
@@ -25,7 +27,7 @@ class MF_Request {
 		if (get_magic_quotes_gpc()) {
 			foreach ($a as $key => $value) {
 				if (is_array($value) || is_object($value)) {
-					$r[$key] = MF_Request::getVarsArray($value);
+					$r[$key] = Request::getVarsArray($value);
 				}
 				else {
 					$r[$key] = stripslashes($value);
@@ -47,6 +49,6 @@ class MF_Request {
 	 * @return array
 	 */
 	public static function getParameters () {
-		return (MF_Front_Controller::getInstance()->getParameters());
+		return (Front\Controller::getInstance()->getParameters());
 	}
 }

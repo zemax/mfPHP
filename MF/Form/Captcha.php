@@ -1,5 +1,9 @@
 <?php
-class MF_Form_Captcha {
+namespace MF\Form;
+
+use MF\Response;
+
+class Captcha {
 	private $chars = '23456789ABCDEFGHJKMNPQRSTUVXYZ';
 	private $fonts = array();
 	private $colors = array();
@@ -117,8 +121,8 @@ class MF_Form_Captcha {
 			$x += $spacing;
 		}
 		
-		MF_Response::setContentType('image/png');
-		MF_Response::setNoCache();
+		Response::setContentType('image/png');
+		Response::setNoCache();
 		imagepng($image);
 	}
 }

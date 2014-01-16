@@ -15,7 +15,11 @@
 * @author	Romain Laurent
 **/
 
-class MF_Template_Template {
+namespace MF\Template;
+
+use \Exception as Exception;
+
+class Template {
 	private $macrosPrefix;
 	private $startDelimiter;
 	private $endDelimiter;

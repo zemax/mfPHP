@@ -1,21 +1,24 @@
 <?php
 /**
- * MF_Date
- * UTF8 Encoded version
- * 
- * @version 2.5.1 2009-01-15
- * - static keyword
- * 
- * @version 2.5.0 2008-09-09
- * - changed internal values
- * - added addXYZ functions
- * 
- * @version 2.0.1 2007-12-12
- * - added age function
- * 
- * @version 2.0.0 2007-06-13
- */
-class MF_Date {
+* MF_Date
+* UTF8 Encoded version
+*
+* @version 2.5.1 2009-01-15
+* - static keyword
+*
+* @version 2.5.0 2008-09-09
+* - changed internal values
+* - added addXYZ functions
+*
+* @version 2.0.1 2007-12-12
+* - added age function
+*
+* @version 2.0.0 2007-06-13
+*/
+
+namespace MF;
+
+class Date {
 	private $year		= 0;
 	private $month		= 0;
 	private $day		= 0;
@@ -61,7 +64,7 @@ class MF_Date {
 	 * @return String 
 	 */
 	public function getYear () {
-		return (MF_String::sizedNumber($this->year, 4));
+		return (String::sizedNumber($this->year, 4));
 	}
 	
 	/**
@@ -88,7 +91,7 @@ class MF_Date {
 	 * @return String
 	 */
 	public function getMonth () {
-		return (MF_String::sizedNumber($this->month, 2));
+		return (String::sizedNumber($this->month, 2));
 	}
 	
 	/**
@@ -117,7 +120,7 @@ class MF_Date {
 	 * @return String
 	 */
 	public function getDay () {
-		return (MF_String::sizedNumber($this->day, 2));
+		return (String::sizedNumber($this->day, 2));
 	}
 	
 	/**
@@ -144,7 +147,7 @@ class MF_Date {
 	 * @return String
 	 */
 	public function getHours () {
-		return (MF_String::sizedNumber($this->hours, 2));
+		return (String::sizedNumber($this->hours, 2));
 	}
 	
 	/**
@@ -171,7 +174,7 @@ class MF_Date {
 	 * @return String
 	 */
 	public function getMinutes () {
-		return (MF_String::sizedNumber($this->minutes, 2));
+		return (String::sizedNumber($this->minutes, 2));
 	}
 	
 	/**
@@ -198,7 +201,7 @@ class MF_Date {
 	 * @return String
 	 */
 	public function getSeconds () {
-		return (MF_String::sizedNumber($this->seconds, 2));
+		return (String::sizedNumber($this->seconds, 2));
 	}
 	
 	/**

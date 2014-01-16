@@ -5,7 +5,10 @@
  * @author Maxime
  *
  */
-class MF_Swf_Parser {
+
+namespace MF\Swf;
+
+class Parser {
 	/**
 	 * Return Header Array from the SWF
 	 * 
@@ -37,8 +40,8 @@ class MF_Swf_Parser {
 		
 		$rect = unpack("C".$size."b", substr($file_header, 1, $size) );
 		
-		$header["FrameWidth"] 	= SWFTools::concat_bits ($rect, $nbits - 3, $nbits) / 20;
-		$header["FrameHeight"] 	= SWFTools::concat_bits ($rect, 3 * $nbits - 3, $nbits) / 20;
+		$header["FrameWidth"] 	= Parser::concat_bits ($rect, $nbits - 3, $nbits) / 20;
+		$header["FrameHeight"] 	= Parser::concat_bits ($rect, 3 * $nbits - 3, $nbits) / 20;
 		
 		$end = unpack("C1fpsreal/C1fps/vFrameCount", substr($file_header, $size+1, 4));
 		$header["FrameRate"] = $end["fps"] + ($end["fpsreal"] / 256);
@@ -53,7 +56,7 @@ class MF_Swf_Parser {
 	 * @param $bytes_array
 	 * @param $start_bit
 	 * @param $length
-	 * @return unknown_type
+	 * @return
 	 */
 	private static function concat_bits ($bytes_array, $start_bit, $length) {
 		$current_byte = floor ($start_bit / 8) + 1;
@@ -87,7 +90,7 @@ class MF_Swf_Parser {
 	 */
 	public static function getHTMLTag ($filename, $width="", $height="", $version="", $background_color="#FFFFFF") {
 		if (($version == "") || ($width == "") || ($height == "")) {
-			$header = SWFTools::getHeader($filename);
+			$header = Parser::getHeader($filename);
 			
 			if ($header) {
 				if ($version == "") {

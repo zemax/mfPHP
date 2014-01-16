@@ -1,12 +1,15 @@
 <?php
 /**
- * Build HTML and TEXT versions of an email from files with fields customisation
- * 
- * @version 1.0.0 2009-01-15
- * 
- * @author Maxime Cousinou
- */
-class MF_Email_Files {
+* Build HTML and TEXT versions of an email from files with fields customisation
+*
+* @version 1.0.0 2009-01-15
+*
+* @author Maxime Cousinou
+*/
+
+namespace MF\Email;
+
+class Files {
 	private $path		= '';
 	private $base_path	= '';
 	private $file		= 'email';
@@ -18,7 +21,7 @@ class MF_Email_Files {
 	 * @param $path		String	The files path
 	 * @param $file		String	The files name
 	 * 
-	 * @return CustomEmail
+	 * @return Files
 	 */
 	public function __construct ($path, $file = 'email', $base_path = '') {
 		$this->path = $path;

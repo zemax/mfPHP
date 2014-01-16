@@ -1,9 +1,11 @@
 <?php
-class MF_Front_DefaultRouter {
+namespace MF\Front;
+
+class DefaultRouter {
 	/**
 	 * Constructor
 	 * 
-	 * @return MF_Front_DefaultRouter
+	 * @return DefaultRouter
 	 */
 	public function __construct () {
 	}

@@ -1,25 +1,27 @@
 <?php
 /**
- * MySQL Object
- *
- * @version  2.0.3 2008-03-18
- * - bug fixed on insertId
- *
- * @version 	2.0.2 2008-02-20
- * - ADDED type 'SHOW'
- * - rewrite condition with switch
- *
- * @version	2.0.1 2007-12-19
- * - SET NAMES 'UTF8' is now in MySQL and test the MySQL server version
- *
- * @version	2.0.0 2007-06-13
- *
- * @version	1.0.1 2006-10-24
- * - bugfix : delete numeric keys in fetch_array
- *
- * @author	Maxime Cousinou
- */
-class MF_Db_MySQL extends MF_Db_Driver {
+* MySQL Object
+*
+* @version  2.0.3 2008-03-18
+* - bug fixed on insertId
+*
+* @version 	2.0.2 2008-02-20
+* - ADDED type 'SHOW'
+* - rewrite condition with switch
+*
+* @version	2.0.1 2007-12-19
+* - SET NAMES 'UTF8' is now in MySQL and test the MySQL server version
+*
+* @version	2.0.0 2007-06-13
+*
+* @version	1.0.1 2006-10-24
+* - bugfix : delete numeric keys in fetch_array
+*
+* @author	Maxime Cousinou
+*/
+namespace MF\Db;
+
+class MySQL extends Driver {
 	private $connexionID 		= false;
 	private $database 			= '';
 	private $username 			= '';
@@ -186,7 +188,7 @@ class MF_Db_MySQL extends MF_Db_Driver {
 	/**
 	 * Renvoie une ligne du curseur sous la forme d'un tableau indexé
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName nom de la requête
 	 *
 	 * @return	integer	un tableau de la ligne en cours du curseur, false en cas d'erreur ou fin de curseur
 	 *
@@ -215,7 +217,7 @@ class MF_Db_MySQL extends MF_Db_Driver {
 	/**
 	 * Renvoie une ligne du curseur sous la forme d'un tableau associatif
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName nom de la requête
 	 *
 	 * @return	mixed	un tableau associatif de la ligne en cours du curseur, false en cas d'erreur ou fin de curseur
 	 *
@@ -250,7 +252,7 @@ class MF_Db_MySQL extends MF_Db_Driver {
 	/**
 	 * Renvoie une ligne du curseur sous la forme d'un object
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName nom de la requête
 	 *
 	 * @return	mixed	un tableau associatif de la ligne en cours du curseur, false en cas d'erreur ou fin de curseur
 	 *
@@ -280,7 +282,7 @@ class MF_Db_MySQL extends MF_Db_Driver {
 	 * Renvoie le nombre de lignes retournées par la requête SELECT
 	 *		ou le nombre de lignes affectées par la requête
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName nom de la requête
 	 *
 	 * @return	integer le nombre de lignes, false en cas d'erreur
 	 *
@@ -310,11 +312,8 @@ class MF_Db_MySQL extends MF_Db_Driver {
 	/**
 	 * Renvoie une ligne du curseur sous la forme d'un tableau associatif
 	 *
-	 * @param 	String	nom de la requête
-	 *
-	 * @return	mixed	id généré pour une colonne AUTO_INCREMENT lors du dernier INSERT ou false en cas d'erreur
-	 *
-	 * @access	public
+	 * @param string $queryName nom de la requête
+	 * @return bool|int|mixed id généré pour une colonne AUTO_INCREMENT lors du dernier INSERT ou false en cas d'erreur
 	 */
 	public function insertId($queryName = 'query') {
 		$ret = false;

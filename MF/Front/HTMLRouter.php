@@ -1,9 +1,11 @@
 <?php
-class MF_Front_HTMLRouter {
+namespace MF\Front;
+
+class HTMLRouter {
 	/**
 	 * Constructor
 	 * 
-	 * @return MF_Front_HTMLRouter
+	 * @return HTMLRouter
 	 */
 	public function __construct () {
 	}
