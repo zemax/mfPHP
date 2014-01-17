@@ -22,16 +22,22 @@
  * 
  * @author 	Maxime Cousinou
  */
+
+namespace MF\Output;
+
+use MF\ReturnObject,
+	MF\Response;
+
 if (!defined('NL')) define ('NL', "\n");
  
-class MF_Output_XML {
+class XML {
 	/**
 	 * Display the XML from a ReturnObject
 	 *
-	 * @param $return		ReturnObject
+	 * @param $return	ReturnObject
 	 */
 	public static function returnObject ($return) {
-		MF_Response::setContentType(MF_Response::$contentTypeTEXT, MF_Response::$charsetUTF8);
+		Response::setContentType(Response::$contentTypeTEXT, Response::$charsetUTF8);
 		
 		if ($return->object == '') {
 			print (self::getXML($return->success, $return->message));

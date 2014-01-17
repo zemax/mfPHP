@@ -1,6 +1,6 @@
 <?php
 /**
-* MF_Front_Controller
+* Controller
 * Décide du controller à utiliser
 *
 * @version	1.6.0 2008-09-03
@@ -28,10 +28,17 @@
 * RewriteRule ^(.*)\.html$ index.php/page/view/$1 [NC,L]
 * RewriteRule ^(.*)$ index.php [NC,L]
 */
+
+namespace MF\Front;
+
+use \Exception as Exception,
+	MF\String,
+	MF\Exception\Handler;
+
 if (!defined('DEFAULT_CONTROLLER')) define ('DEFAULT_CONTROLLER', 	'page');
 if (!defined('DEFAULT_ACTION')) 	define ('DEFAULT_ACTION', 		'index');
 
-class MF_Front_Controller {
+class Controller {
 	private static $instance;
 	
 	private $router;
@@ -43,20 +50,20 @@ class MF_Front_Controller {
 	/**
 	 * Constructor
 	 * 
-	 * @return MF_Front_Controller
+	 * @return Controller
 	 */
 	private function __construct () {
-		$this->setRouter(new MF_Front_DefaultRouter());
+		$this->setRouter(new DefaultRouter());
 	}
 	
 	/**
-	 * Return MF_Front_Controller Singleton
+	 * Return Controller Singleton
 	 *
-	 * @return MF_Front_Controller
+	 * @return Controller
 	 */
 	public static function getInstance () {
 		if (!isset(self::$instance)) {
-			self::$instance = new MF_Front_Controller ();
+			self::$instance = new Controller ();
 		}
 		
 		return (self::$instance);
@@ -74,7 +81,7 @@ class MF_Front_Controller {
 	/**
 	 * Get the router
 	 * 
-	 * @return MF_Front_Router
+	 * @return DefaultRouter
 	 */
 	public function getRouter () {
 		return ($this->router);
@@ -141,18 +148,18 @@ class MF_Front_Controller {
 	 */
 	private function doDispatch ($application = 'Site') {
 		try {
-			$controllerName = $application.'_'.MF_String::toCapitalize($this->module).'_Controller';
+			$controllerName = $application.'\\'.String::toCapitalize($this->module).'\\Controller';
 			$actionName		= $this->action;
 			
 			// CONTROLLER
 			$controller 	= new $controllerName();
 			
 			// ACTION
-			if (!method_exists($controller, $actionName)) throw (new Exception(MF_EXCEPTION_ACTION_NOT_FOUND));
+			if (!method_exists($controller, $actionName)) throw (new Exception('MF_EXCEPTION_ACTION_NOT_FOUND'));
 			$controller->$actionName();
 		}
 		catch (Exception $e) {
-			MF_Exception_Handler::getInstance()->handle($e);
+			Handler::getInstance()->handle($e);
 		}
 	}
 	

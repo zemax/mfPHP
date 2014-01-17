@@ -2,25 +2,28 @@
 /* $Id: zip.lib.php,v 1.7 2002/10/23 04:17:26 robbat2 Exp $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 /**
- * Zip file creation class.
- * Makes zip files.
- *
- * Based on :
- *
- *  http://www.zend.com/codex.php?id=535&single=1
- *  By Eric Mueller <eric@themepark.com>
- *
- *  http://www.zend.com/codex.php?id=470&single=1
- *  by Denis125 <webmaster@atlant.ru>
- *
- *  a patch from Peter Listiak <mlady@users.sourceforge.net> for last modified
- *  date and time of the compressed file
- *
- * Official ZIP file format: http://www.pkware.com/appnote.txt
- *
- * @access  public
- */
-class MF_Zip_Zip
+* Zip file creation class.
+* Makes zip files.
+*
+* Based on :
+*
+*  http://www.zend.com/codex.php?id=535&single=1
+*  By Eric Mueller <eric@themepark.com>
+*
+*  http://www.zend.com/codex.php?id=470&single=1
+*  by Denis125 <webmaster@atlant.ru>
+*
+*  a patch from Peter Listiak <mlady@users.sourceforge.net> for last modified
+*  date and time of the compressed file
+*
+* Official ZIP file format: http://www.pkware.com/appnote.txt
+*
+* @access  public
+*/
+
+namespace MF\Zip;
+
+class Zip
 {
     /**
      * Array to store compressed data
@@ -55,7 +58,7 @@ class MF_Zip_Zip
      * Converts an Unix timestamp to a four byte DOS date and time format (date
      * in high two bytes, time in low two bytes allowing magnitude comparison).
      *
-     * @param  integer  the current Unix timestamp
+     * @param  integer  $unixtime	the current Unix timestamp
      *
      * @return integer  the current date in a four byte DOS format
      *
@@ -81,9 +84,9 @@ class MF_Zip_Zip
     /**
      * Adds "file" to archive
      *
-     * @param  string   file contents
-     * @param  string   name of the file in the archive (may contains the path)
-     * @param  integer  the current timestamp
+     * @param  string   $data	file contents
+     * @param  string   $name	name of the file in the archive (may contains the path)
+     * @param  integer  $time	the current timestamp
      *
      * @access public
      */

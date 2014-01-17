@@ -1,5 +1,9 @@
 <?php
-class MF_Db_SQLite extends MF_Db_Driver {
+namespace MF\Db;
+
+use \SQLiteDatabase as SQLiteDatabase;
+
+class SQLite extends Driver {
 	private $connexion 		= false;
 
 	private $cursors			= array();
@@ -41,7 +45,7 @@ class MF_Db_SQLite extends MF_Db_Driver {
 	 *
 	 * @return Boolean
 	 */
-	public function query($query, $queryName = 'query') {
+	public function query($query, $queryName	= 'query') {
 		// teste si le nom de la requête n'existe pas déjà dans le tableau $cursors
 		if (isset($this->cursors[$queryName])) {
 			// requête déjà existante, on libère les ressources
@@ -92,13 +96,13 @@ class MF_Db_SQLite extends MF_Db_Driver {
 	/**
 	 * Renvoie une ligne du curseur sous la forme d'un tableau indexé
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName	nom de la requête
 	 *
 	 * @return	integer	un tableau de la ligne en cours du curseur, FALSE en cas d'erreur ou fin de curseur
 	 *
 	 * @access	public
 	 */
-	public function fetchRow($queryName = 'query') {
+	public function fetchRow($queryName	= 'query') {
 		$sqlResult = $this->cursors[$queryName]['id'];
 		
 		return ($sqlResult->fetch(SQLITE_NUM));
@@ -107,13 +111,13 @@ class MF_Db_SQLite extends MF_Db_Driver {
 	/**
 	 * Renvoie une ligne du curseur sous la forme d'un tableau associatif
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName	nom de la requête
 	 *
 	 * @return	mixed	un tableau associatif de la ligne en cours du curseur, FALSE en cas d'erreur ou fin de curseur
 	 *
 	 * @access	public
 	 */
-	public function fetchArray($queryName = 'query') {
+	public function fetchArray($queryName	= 'query') {
 		$sqlResult = $this->cursors[$queryName]['id'];
 		
 		return ($sqlResult->fetch(SQLITE_ASSOC));
@@ -122,13 +126,13 @@ class MF_Db_SQLite extends MF_Db_Driver {
 	/**
 	 * Renvoie une ligne du curseur sous la forme d'un object
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName	nom de la requête
 	 *
 	 * @return	mixed	un tableau associatif de la ligne en cours du curseur, FALSE en cas d'erreur ou fin de curseur
 	 *
 	 * @access	public
 	 */
-	public function fetchObject($queryName = 'query') {
+	public function fetchObject($queryName	= 'query') {
 		$sqlResult = $this->cursors[$queryName]['id'];
 		
 		return ($sqlResult->fetchObject('stdClass'));
@@ -138,13 +142,13 @@ class MF_Db_SQLite extends MF_Db_Driver {
 	 * Renvoie le nombre de lignes retournées par la requête SELECT
 	 *		ou le nombre de lignes affectées par la requête
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName	nom de la requête
 	 *
 	 * @return	integer le nombre de lignes, FALSE en cas d'erreur
 	 *
 	 * @access	public
 	 */
-	public function numRows($queryName = 'query') {
+	public function numRows($queryName	= 'query') {
 		$sqlResult = $this->cursors[$queryName]['id'];
 		
 		return ($sqlResult->numRows());
@@ -153,13 +157,13 @@ class MF_Db_SQLite extends MF_Db_Driver {
 	/**
 	 * Renvoie une ligne du curseur sous la forme d'un tableau associatif
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName	nom de la requête
 	 *
 	 * @return	mixed	id généré pour une colonne AUTO_INCREMENT lors du dernier INSERT ou FALSE en cas d'erreur
 	 *
 	 * @access	public
 	 */
-	public function insertId($queryName = 'query') {
+	public function insertId($queryName	= 'query') {
 		return ($this->connexion->lastInsertRowid());
 	}
 
@@ -170,7 +174,7 @@ class MF_Db_SQLite extends MF_Db_Driver {
 	 *
 	 * @access	public
 	 */
-	public function freeQuery($queryName = 'query') {
+	public function freeQuery($queryName	= 'query') {
 		unset($this->cursors[$queryName]);
 	}
 

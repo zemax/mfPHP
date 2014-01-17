@@ -1,5 +1,9 @@
 <?php
-class MF_Color_RGB {
+namespace MF\Color;
+
+use MF\String;
+
+class RGB {
 	private $red 	= 0;
 	private $green 	= 0;
 	private $blue 	= 0;
@@ -7,7 +11,7 @@ class MF_Color_RGB {
 	/**
 	 * Constructor
 	 * 
-	 * @return Color
+	 * @return RGB
 	 */
 	public function __construct ($html = '#000000') {
 		$this->red 		= hexdec(substr($html, 1, 2));
@@ -22,9 +26,9 @@ class MF_Color_RGB {
 	}
 	
 	public function getHTML () {
-		return ('#'	.MF_String::sizedNumber(dechex($this->red), 2)
-					.MF_String::sizedNumber(dechex($this->green), 2)
-					.MF_String::sizedNumber(dechex($this->blue), 2)
+		return ('#'	.String::sizedNumber(dechex($this->red), 2)
+					.String::sizedNumber(dechex($this->green), 2)
+					.String::sizedNumber(dechex($this->blue), 2)
 		);
 	}
 }

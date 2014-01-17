@@ -1,7 +1,11 @@
 <?php
-class MF_Exception_QuietHandler extends MF_Exception_Handler {
+namespace MF\Exception;
+
+use MF\Response;
+
+class QuietHandler extends Handler {
 	protected function handle404($e) {
-		MF_Response::setHTTPStatus(404);
+		Response::setHTTPStatus(404);
 		die('<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
 <html><head>
 <title>404 Not Found</title>

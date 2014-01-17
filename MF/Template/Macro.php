@@ -1,5 +1,7 @@
 <?php
-class MF_Template_Macro {
+namespace MF\Template;
+
+class Macro {
 	public $parameters;
 	public $data;
 	

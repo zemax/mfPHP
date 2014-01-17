@@ -1,5 +1,7 @@
 <?php
-class MF_Db_Driver {
+namespace MF\Db;
+
+class Driver {
 	protected $errorStatus 		= 0;
 
 	/**************************************************
@@ -61,7 +63,7 @@ class MF_Db_Driver {
 	/**
 	 * Renvoie une ligne du curseur sous la forme d'un tableau indexé
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName	nom de la requête
 	 *
 	 * @return	integer	un tableau de la ligne en cours du curseur, FALSE en cas d'erreur ou fin de curseur
 	 *
@@ -74,7 +76,7 @@ class MF_Db_Driver {
 	/**
 	 * Renvoie une ligne du curseur sous la forme d'un tableau associatif
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName	nom de la requête
 	 *
 	 * @return	mixed	un tableau associatif de la ligne en cours du curseur, FALSE en cas d'erreur ou fin de curseur
 	 *
@@ -87,7 +89,7 @@ class MF_Db_Driver {
 	/**
 	 * Renvoie une ligne du curseur sous la forme d'un object
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName	nom de la requête
 	 *
 	 * @return	mixed	un tableau associatif de la ligne en cours du curseur, FALSE en cas d'erreur ou fin de curseur
 	 *
@@ -101,7 +103,7 @@ class MF_Db_Driver {
 	 * Renvoie le nombre de lignes retournées par la requête SELECT
 	 *		ou le nombre de lignes affectées par la requête
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName	nom de la requête
 	 *
 	 * @return	integer le nombre de lignes, FALSE en cas d'erreur
 	 *
@@ -114,7 +116,7 @@ class MF_Db_Driver {
 	/**
 	 * Renvoie une ligne du curseur sous la forme d'un tableau associatif
 	 *
-	 * @param 	String	nom de la requête
+	 * @param 	String	$queryName	nom de la requête
 	 *
 	 * @return	mixed	id généré pour une colonne AUTO_INCREMENT lors du dernier INSERT ou FALSE en cas d'erreur
 	 *

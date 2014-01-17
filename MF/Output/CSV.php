@@ -1,5 +1,10 @@
 <?php
-class MF_Output_CSV {
+namespace MF\Output;
+
+use MF\Response,
+	MF\String;
+
+class CSV {
 	var $delimiter;
 	var $separator;
 	var $newline;
@@ -11,7 +16,7 @@ class MF_Output_CSV {
 	}
 	
 	public function printCSV ($array, $titles = array(), $filename = 'export.csv') {
-		MF_Response::setContentType(MF_Response::$contentTypeCSV, MF_Response::$charsetISO);
+		Response::setContentType(Response::$contentTypeCSV, Response::$charsetISO);
 		header('Content-Disposition: attachment; filename="'.$filename.'"');
 		
 		if (!empty($titles)) {
@@ -30,6 +35,6 @@ class MF_Output_CSV {
 	}
 	
 	private function quote ($value) {
-		return (MF_String::toISO($this->delimiter.str_replace($this->delimiter, str_repeat($this->delimiter, 2), $value).$this->delimiter));
+		return (String::toLatin1($this->delimiter.str_replace($this->delimiter, str_repeat($this->delimiter, 2), $value).$this->delimiter));
 	}
 }

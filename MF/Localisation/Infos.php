@@ -1,5 +1,10 @@
 <?php
-class MF_Localisation_Infos {
+namespace MF\Localisation;
+
+use \SimpleXMLElement as SimpleXMLElement,
+	\Exception as Exception;
+
+class Infos {
 	var $ip 			= '';
 	var $countryCode 	= '';
 	var $countryName 	= '';
@@ -23,7 +28,7 @@ class MF_Localisation_Infos {
 	 * Return Geolocalisation Complete from an IP
 	 *
 	 * @param String $ip
-	 * @return MF_Localisation_Infos Geolocalisation [return false on failure]
+	 * @return Infos Geolocalisation [return false on failure]
 	 */
 	public static function getInfosFromWebservice ($ip = '') {
 		return (self::getWebservice($ip, self::WEBSERVICE_QUERY, self::WEBSERVICE_BACKUP_QUERY));
@@ -33,7 +38,7 @@ class MF_Localisation_Infos {
 	 * Return Geolocalisation Country from an IP
 	 *
 	 * @param String $ip
-	 * @return MF_Localisation_Infos Geolocalisation [return false on failure]
+	 * @return Infos Geolocalisation [return false on failure]
 	 */
 	public static function getCountryFromWebservice ($ip = ''){
 		return (self::getWebservice($ip, self::WEBSERVICE_COUNTRY, self::WEBSERVICE_BACKUP_COUNTRY));
@@ -45,7 +50,7 @@ class MF_Localisation_Infos {
 	 * @param String $ip
 	 * @param String $url
 	 * @param String $backup_url
-	 * @return MF_Localisation_Infos Geolocalisation [return false on failure]
+	 * @return Infos Geolocalisation [return false on failure]
 	 */
 	private static function getWebservice ($ip = '', $url = '', $backup_url = '') {
 		if (empty($ip)) {
@@ -69,7 +74,7 @@ class MF_Localisation_Infos {
 			$infosXMLObject = @new SimpleXMLElement($infosXML);
 			
 			if (!empty($infosXMLObject)) {
-				$infos = new MF_Localisation_Infos();
+				$infos = new Infos();
 				
 				if (!empty($infosXMLObject->Ip)) 			$infos->ip = (string) $infosXMLObject->Ip;
 				if (!empty($infosXMLObject->CountryCode)) 	$infos->countryCode = (string) $infosXMLObject->CountryCode;

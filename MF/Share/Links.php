@@ -5,7 +5,10 @@
  * 
  * @author Maxime
  */
-class MF_Share_Links {
+
+namespace MF\Links;
+
+class Links {
 	protected static function link ($content, $url, $w = 500, $h = 300) {
 		return '<a '
 					.'target="_blank" '
@@ -35,7 +38,7 @@ class MF_Share_Links {
 	public static function facebook ($content, $url, $title) {
 		$url   = urlencode($url);
 		$title = urlencode($title);
-		return MF_Share_Links::link($content, 'https://www.facebook.com/sharer.php?u='.$url.'&t='.$title);
+		return Links::link($content, 'https://www.facebook.com/sharer.php?u='.$url.'&t='.$title);
 	}
 
 	/**
@@ -49,7 +52,7 @@ class MF_Share_Links {
 	public static function twitter ($content, $url, $title) {
 		$url   = urlencode($url);
 		$title = urlencode($title);
-		return MF_Share_Links::link($content, 'https://twitter.com/share?url='.$url.'&text='.$title);
+		return Links::link($content, 'https://twitter.com/share?url='.$url.'&text='.$title);
 	}
 
 	/**
@@ -63,7 +66,7 @@ class MF_Share_Links {
 	public static function google ($content, $url, $title) {
 		$url   = urlencode($url);
 		$title = urlencode($title);
-		return MF_Share_Links::link($content, 'https://plus.google.com/share?url='.$url.'&hl=fr');
+		return Links::link($content, 'https://plus.google.com/share?url='.$url.'&hl=fr');
 	}
 
 	/**
@@ -77,6 +80,6 @@ class MF_Share_Links {
 	public static function linkedin ($content, $url, $title) {
 		$url   = urlencode($url);
 		$title = urlencode($title);
-		return MF_Share_Links::link($content, 'https://www.linkedin.com/shareArticle?mini=true&url='.$url.'&title='.$title);
+		return Links::link($content, 'https://www.linkedin.com/shareArticle?mini=true&url='.$url.'&title='.$title);
 	}
 }

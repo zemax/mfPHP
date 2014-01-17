@@ -1,5 +1,7 @@
 <?php
-class MF_Localisation_LocaleObject {
+namespace MF\Localisation;
+
+class LocaleObject {
 	var $texts;
 	
 	public function __construct () {

@@ -1,10 +1,13 @@
 <?php
 /**
- * Response
- * 
- * @version 0.1.2
- */
-class MF_Response {
+* Response
+* 
+* @version 0.1.2
+*/
+
+namespace MF;
+
+class Response {
 	public static $contentTypeHTML 			= 'text/html';
 	public static $contentTypeTEXT 			= 'text/plain';
 	public static $contentTypeJAVASCRIPT 	= 'text/javascript';

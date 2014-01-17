@@ -1,12 +1,17 @@
 <?php
-class MF_Contacts_OpenInviter {
+namespace MF\Contacts;
+
+use MF\String,
+	MF\ReturnObject;
+
+class OpenInviter {
 	public function getAddressBook($mailbox, $login, $password){
 		/****************************************************************************************************
 		* VERIFICATION
 		****************************************************************************************************/
 		
 		if (!function_exists ('curl_version')){
-			return (new MF_Return_Object(0, 'curl_error'));
+			return (new ReturnObject(0, 'curl_error'));
 		}
 				
 		/****************************************************************************************************
@@ -14,15 +19,15 @@ class MF_Contacts_OpenInviter {
 		****************************************************************************************************/
 		
 		if (empty($mailbox)) {
-			return (new MF_Return_Object(0, 'mailbox_invalid'));
+			return (new ReturnObject(0, 'mailbox_invalid'));
 		}
 		
 		if (empty($login)) {
-			return (new MF_Return_Object(0, 'login_invalid'));
+			return (new ReturnObject(0, 'login_invalid'));
 		}
 		
 		if (empty($password)) {
-			return (new MF_Return_Object(0, 'password_invalid'));
+			return (new ReturnObject(0, 'password_invalid'));
 		}
 		
 		/****************************************************************************************************
@@ -54,7 +59,7 @@ class MF_Contacts_OpenInviter {
 		****************************************************************************************************/
 		
 		if (!$service->login($login, $password)) {
-			return (new MF_Return_Object(0, 'login_invalid'));
+			return (new ReturnObject(0, 'login_invalid'));
 		}
 		
 		/****************************************************************************************************
@@ -67,10 +72,10 @@ class MF_Contacts_OpenInviter {
 		
 		// On vérifie que le carnet n'est pas vide
 		if (empty($contacts)){
-			return (new MF_Return_Object(0, 'get_addressbook_empty'));
+			return (new ReturnObject(0, 'get_addressbook_empty'));
 		}
 		else {
-			return (new MF_Return_Object(1, 'get_addressbook_success', $contacts));
+			return (new ReturnObject(1, 'get_addressbook_success', $contacts));
 		}
 	}
 	
@@ -83,9 +88,9 @@ class MF_Contacts_OpenInviter {
 		$contactsClean = array();
 		
 		foreach ($contacts as $email => $name) {
-			$email = MF_String::cleanEmail($email);
+			$email = String::cleanEmail($email);
 			
-			if (MF_String::isValidEmail($email) && !MF_String::isJetableEmail($email)) {
+			if (String::isValidEmail($email) && !String::isJetableEmail($email)) {
 				$contactsClean[]	= array(
 					'name' 	=> utf8_decode($name), 
 					'email'	=> $email
