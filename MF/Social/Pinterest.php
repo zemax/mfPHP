@@ -9,8 +9,8 @@
 namespace MF\Social;
 
 class Pinterest {
-	public function __construct() {
-		$this->mashapeApiKey = 'i7T5b7cIo9u1sNmu70WUOGtmTIxkifaL';
+	public function __construct($mashapeApiKey) {
+		$this->mashapeApiKey = $mashapeApiKey;
 	}
 
 	/****************************************************************************************************

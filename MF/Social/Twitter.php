@@ -11,11 +11,11 @@ namespace MF\Social;
 include_once 'twitteroauth\twitteroauth.php';
 
 class Twitter {
-	public function __construct() {
-		$this->consumerKey 			= 'JGv5AZTCnai1ZKgLYnZesA';
-		$this->consumerSecret 		= 'AHkSThtfVYWJS0YMpAeXBNFRjzyj1luZfZAnqrAOGE';
-		$this->accessToken 			= '30275861-qrWuD7KrTLV84zvHtblJ7T87Ud0APlKk8RdxiQ8ec';
-		$this->accessTokenSecret 	= 'g13scg5SFK2mP7NrYbeO7KpVfh7zfDJ7TLtHDnzH7jBqB';
+	public function __construct($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret) {
+		$this->consumerKey 			= $consumerKey;
+		$this->consumerSecret 		= $consumerSecret;
+		$this->accessToken 			= $accessToken;
+		$this->accessTokenSecret 	= $accessTokenSecret;
 	}
 
 /****************************************************************************************************
