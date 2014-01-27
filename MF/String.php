@@ -110,10 +110,8 @@ class String {
 	 * 
 	 * @return String
 	 */
-	public static function toLatin1($v) {
-		$v = str_replace('€', chr(128), $v);
-		
-		return (utf8_decode($v));
+	public static function toLatin1($v, $from = 'UTF-8') {
+		return (mb_convert_encoding($v, 'ISO-8859-15', $from));
 	}
 	
 	/**
