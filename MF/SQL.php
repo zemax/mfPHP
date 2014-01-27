@@ -61,6 +61,15 @@ class SQL {
 		$params['password'] = empty($params['password'])?(defined('DB_PASSWORD')?DB_PASSWORD:''):$params['password'];
 		$params['utf8']     = empty($params['utf8'])?true:$params['utf8'];
 
+		if ($params['utf8']) {
+			$params['charset'] = 'utf8';
+			if ($params['driver'] == 'pdo_mysql') {
+				$params['driverOptions'] = array(
+					1002 => 'SET NAMES utf8'
+				);
+			}
+		}
+
 		$dbConfig = new \Doctrine\DBAL\Configuration();
 
 		SQL::$instance = \Doctrine\DBAL\DriverManager::getConnection($params, $dbConfig);
