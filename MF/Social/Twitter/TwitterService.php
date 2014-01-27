@@ -6,11 +6,11 @@
  * Time: 14:31
  */
 
-namespace MF\Social;
+namespace MF\Social\Twitter;
 
 include_once 'twitteroauth\twitteroauth.php';
 
-class Twitter {
+class TwitterService {
 	public function __construct($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret) {
 		$this->consumerKey = $consumerKey;
 		$this->consumerSecret = $consumerSecret;
@@ -29,7 +29,7 @@ class Twitter {
 	 * ACTIONS
 	 ****************************************************************************************************/
 
-	public function getUserTweets($user, $count = 20, $include_rts = false, $ignore_replies = true) {
+	public function getUserTweets($user, $count = 100, $include_rts = false, $ignore_replies = true) {
 		$tweets = $this->connection->get(
 			'https://api.twitter.com/1.1/statuses/user_timeline.json'
 						.'?screen_name='.$user
@@ -38,7 +38,14 @@ class Twitter {
 						.'&exclude_replies='.$ignore_replies
 		);
 
-		return $tweets;
+		$return = new \stdClass();
+		$return->metadata = array();
+
+		$return->data = array();
+		foreach ($tweets as $data) {
+			$return->data[] = new Tweet($data);
+		}
+		return $return;
 	}
 
 	public function searchTweets($q, $count = 20) {
@@ -48,6 +55,13 @@ class Twitter {
 						.'&count='.$count
 		);
 
-		return $tweets;
+		$return = new \stdClass();
+		$return->metadata = $tweets->search_metadata;
+
+		$return->data = array();
+		foreach ($tweets->statuses as $data) {
+			$return->data[] = new Tweet($data);
+		}
+		return $return;
 	}
 }

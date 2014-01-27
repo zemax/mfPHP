@@ -6,10 +6,10 @@
  * Time: 15:23
  */
 
-namespace MF\Social;
+namespace MF\Social\Instagram;
 
 
-class Instagram {
+class InstagramService {
 	public function __construct($accessToken) {
 		$this->accessToken = $accessToken;
 	}
@@ -50,4 +50,4 @@ class Instagram {
 
 		return $grams;
 	}
-} 
+}

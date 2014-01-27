@@ -6,9 +6,9 @@
  * Time: 12:43
  */
 
-namespace MF\Social;
+namespace MF\Social\Pinterest;
 
-class Pinterest {
+class PinterestService {
 	public function __construct($mashapeApiKey) {
 		$this->mashapeApiKey = $mashapeApiKey;
 	}
@@ -37,6 +37,13 @@ class Pinterest {
 
 		$pins = json_decode($body);
 
-		return $pins->body;
+		$return = new \stdClass();
+		$return->metadata = $pins->meta;
+
+		$return->data = array();
+		foreach ($pins->body as $data) {
+			$return->data[] = new Pin($data);
+		}
+		return $return;
 	}
 }
