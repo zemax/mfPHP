@@ -30,7 +30,7 @@ class Template {
 	 *
 	 * @return Template
 	 */
-	public function __construct ($macrosPrefix = 'Macro_', $startDelimiter = '{[', $endDelimiter = ']}') {
+	public function __construct ($macrosPrefix = 'Macro\\', $startDelimiter = '{[', $endDelimiter = ']}') {
 		$this->startDelimiter 	= $startDelimiter;
 		$this->endDelimiter 	= $endDelimiter;
 		$this->macrosPrefix 	= $macrosPrefix;

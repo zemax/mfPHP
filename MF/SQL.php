@@ -32,7 +32,7 @@ class SQL {
 	/**
 	 * Return the SQL connexion instance, create it if needed
 	 *
-	 * @return Db\Driver
+	 * @return \Doctrine\DBAL\Connection
 	 */
 	public static function getConnection ($params = array()) {
 		if (isset(SQL::$instance)) {
@@ -80,7 +80,7 @@ class SQL {
 	/**
 	 * Return the SQL connexion instance, create it if needed
 	 *
-	 * @return Db\Driver
+	 * @return \Doctrine\DBAL\Connection
 	 */
 	public static function getInstance ($params = array()) {
 		return (SQL::getConnection($params));

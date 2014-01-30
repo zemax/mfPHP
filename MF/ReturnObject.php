@@ -37,13 +37,6 @@ class ReturnObject {
 	 * @return ReturnObject
 	 */
 	public static function returnException ($e) {
-		switch ($e->getMessage()) {
-			case 'database_error':
-				return (new ReturnObject(0, $e->getMessage(), $e->getFile().' : line '.$e->getLine()."\n".SQL::getInstance()->errorCode().' : '.SQL::getInstance()->errorMessage()));
-				break;
-				
-			default:
-				return (new ReturnObject(0, $e->getMessage(), $e->getFile().' : line '.$e->getLine()));
-		}
+		return (new ReturnObject(0, $e->getMessage(), $e->getFile().' : line '.$e->getLine()));
 	}
 }
