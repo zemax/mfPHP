@@ -150,10 +150,12 @@ class Controller {
 		try {
 			$controllerName = $application.'\\'.String::toCapitalize($this->module).'\\Controller';
 			$actionName		= $this->action;
-			
+
+			if (!class_exists($controllerName, true)) throw (new Exception('MF_EXCEPTION_CLASS_NOT_FOUND'));
+
 			// CONTROLLER
 			$controller 	= new $controllerName();
-			
+
 			// ACTION
 			if (!method_exists($controller, $actionName)) throw (new Exception('MF_EXCEPTION_ACTION_NOT_FOUND'));
 			$controller->$actionName();

@@ -1,6 +1,7 @@
 <?php
 namespace MF\Exception;
 
+if (!defined('MF_EXCEPTION_404')) define ('MF_EXCEPTION_404', 'MF_EXCEPTION_404');
 if (!defined('MF_EXCEPTION_CLASS_NOT_FOUND'))  define ('MF_EXCEPTION_CLASS_NOT_FOUND', 'MF_EXCEPTION_CLASS_NOT_FOUND');
 if (!defined('MF_EXCEPTION_ACTION_NOT_FOUND')) define ('MF_EXCEPTION_ACTION_NOT_FOUND', 'MF_EXCEPTION_ACTION_NOT_FOUND');
 
@@ -39,6 +40,10 @@ class Handler {
 	 */
 	public function handle ($e) {
 		switch ($e->getMessage()) {
+			case MF_EXCEPTION_404:
+				$this->handle404($e);
+				break;
+
 			case MF_EXCEPTION_CLASS_NOT_FOUND:
 				$stack = $e->getTrace();
 				if ($stack[1]['class'] == 'MF\\Front\\Controller') {
