@@ -48,7 +48,16 @@ class Response {
 			header('Content-Type: '.$type);
 		}
 	}
-	
+
+	/**
+	 * Send P3P Policy
+	 *
+	 * @param $p3p		String
+	 */
+	public static function setP3P ($p3p = 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"') {
+		header('P3P: '.$p3p);
+	}
+
 	/**
 	 * Send a String with gzip
 	 * 
