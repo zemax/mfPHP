@@ -198,7 +198,7 @@ class String {
 		$str = self::trim($str);
 		$str = self::toLowerCase($str);
 		$str = self::replaceAccents($str);
-		$str = preg_replace('/[^a-zA-Z0-9@_\.\-]/', '', $str);
+		$str = preg_replace('/[^a-zA-Z0-9@_\.\-\+]/', '', $str);
 		
 		return ($str);
 	}
@@ -292,9 +292,9 @@ class String {
 	public static function isJetableEmail ($str) {
 		$str = self::cleanEmail($str);
 		$a = explode('@', $str);
-		$a = array_pop($a);
+		$domain = array_pop($a);
 		
-		switch ($a) {
+		switch ($domain) {
 			case 'jetable.org':
 			case 'jetable.net':
 			case 'jetable.com':
@@ -316,6 +316,11 @@ class String {
 				return (preg_match('/-/', $str));
 				break;
 				
+			case 'gmail.com':
+			case 'mail.google.com':
+				return (preg_match('/\+/', $str));
+				break;
+
 			default:
 				return (false);
 		}
