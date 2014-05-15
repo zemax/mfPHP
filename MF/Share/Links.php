@@ -6,7 +6,7 @@
  * @author Maxime
  */
 
-namespace MF\Links;
+namespace MF\Share;
 
 class Links {
 	protected static function link ($content, $url, $w = 500, $h = 300) {
