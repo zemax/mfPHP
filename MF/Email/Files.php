@@ -28,7 +28,7 @@ class Files {
 		$this->file = $file;
 		
 		if (empty($base_path)) {
-			$this->base_path = realpath(dirname(__FILE__).'/../../../');
+			$this->base_path = realpath(dirname(__FILE__).'/../../../../../');
 		}
 		else {
 			$this->base_path = $base_path;
