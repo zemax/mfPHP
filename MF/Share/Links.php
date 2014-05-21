@@ -9,10 +9,11 @@
 namespace MF\Share;
 
 class Links {
-	protected static function link ($content, $url, $w = 500, $h = 300) {
+	protected static function link ($content, $url, $w = 500, $h = 300, $class = 'share') {
 		return '<a '
 					.'target="_blank" '
 					.'href="'.$url.'" '
+					.'class="'.$class.'" '
 					.'rel="nofollow" '
 					.'onclick="javascript:window.open(this.href, \'sharer\', \''
 									.'menubar=no,'
