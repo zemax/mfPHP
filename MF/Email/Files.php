@@ -62,12 +62,13 @@ class Files {
 		$dir 	= $this->base_path;
 		
 		$html 	= file_get_contents ($dir.'/'.$this->path.$this->file.'.html');
-		$html 	= preg_replace('/src="images/i', 'src="'.BASE_URL.$this->path.'images', $html);
-		
+
 		foreach ($fields AS $key => $value) {
 			$html = preg_replace('/{\['.$key.'\]}/i', $value, $html);
 		}
-		
+
+		$html 	= preg_replace('/src="images/i', 'src="'.BASE_URL.$this->path.'images', $html);
+
 		preg_match_all('`<title>(.*?)</title>`i', $html, $out);
 		
 		if (!empty($out[1][0])) {
